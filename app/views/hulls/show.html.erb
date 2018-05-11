@@ -1,0 +1,100 @@
+<h1><%=h @hull[:name]  %> </h1>
+<div id="main">
+  <%= googleadlist %>
+<label>Производитель:</label>
+<%
+@hull.manufacturers.each do |mfg|
+  concat '<a href="/manufacturers/'
+  concat mfg[:slug]
+  concat '">'
+  concat mfg[:name]
+  concat "</a>"
+end
+%>
+<br />
+<br />
+<label>Ссылка на сайт с описанием:</label><a href="<%=h @hull[:url] %>"><%=h @hull[:url] %></a>
+<br />
+<p><%=h @hull[:description] %></p>
+<label>Длина:</label> <%=h @hull[:length] %>м.
+<br />
+<br />
+<label>Ширина:</label> <%=h @hull[:width] %>м.
+<br />
+<br />
+<label>Высота:</label> <%=h @hull[:height] %>м.
+<br />
+<br />
+<label>Вес:</label> <%=h @hull[:weight] %>кг.
+<br />
+<br />
+<label>Материал:</label> <%=h pick_props('Material', @hull.properties) %>
+<br />
+<br />
+<label>Тип палубы:</label> <%=h pick_props('DeckType', @hull.properties) %>
+<br />
+<br />
+<label>Описание обводов:</label> <%=h @hull[:configuration] %>
+<br />
+<br />
+<label>Килеватость:</label> <%=h @hull[:deadrise] %>°
+<br />
+<br />
+<label>Высота транца:</label> <%=h pick_props('TransomHeight', @hull.properties) %>
+<br />
+<br />
+<label>Тип движителя:</label> <%=h pick_props('MoverType', @hull.properties) %>
+<br />
+<br />
+<label>Мощность:</label> <%=h @hull[:power_min] %> - <%=h @hull[:power_max] %> л.с.
+</div>
+<div id="right-column">
+  <div class="panel">
+    <h2>Дополнительно</h2>
+    <ul>
+      <% unless @hull[:length].blank? %>
+      <%
+      l1 = @hull[:length] - 0.25
+      l1 = 0 if l1 < 0
+      l2 = @hull[:length] + 0.25
+      %>
+      <li><a href="/search/length/<%=h l1%>-<%=h l2%>/">Лодки и катера от <%=h l1 %> до <%=h l2%> метров</a></li>
+      <% end %>
+      <% if @hull.manufacturers.length > 0 %>
+      <li>
+      <%
+      @hull.manufacturers.each do |mfg|
+        concat '<a href="/manufacturers/'
+        concat mfg[:slug]
+        concat '">Лодки и катера производителя '
+        concat mfg[:name]
+        concat "</a>"
+      end
+      %>
+      </li>
+      <% end %>
+      <%
+      @hull.properties.each do |prop|
+        next unless prop.type == 'Material'
+        concat '<li><a href="/search/material/'
+        concat prop[:slug]
+        concat '">Лодки и катера из материала '
+        concat prop[:title]
+        concat "</a></li>"
+      end
+      %>
+      <%
+      @hull.properties.each do |prop|
+        next unless prop.type == 'DeckType'
+        concat '<li><a href="/search/material/'
+        concat prop[:slug]
+        concat '">Лодки и катера с палубой '
+        concat prop[:title]
+        concat "</a></li>"
+      end
+      %>
+      <li><a href="/search/power/<%= @hull[:power_min]%>-<%= @hull[:power_max]%>">Лодки и катера для мощности двигателя от <%= @hull[:power_min]%> до <%= @hull[:power_max]%> сил</a></li>
+    </ul>
+    <%= googleadright %>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+10
+
+dir
+131
+svn+ssh://xypoonfed@panaitov.net/srv/svn/launcha/app
+svn+ssh://xypoonfed@panaitov.net/srv/svn/launcha
+
+
+
+2011-01-08T21:16:32.217673Z
+131
+xypoonfed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6b03c780-edab-4973-886f-3c57c3cbb7cb
+
+helpers
+dir
+
+models
+dir
+
+controllers
+dir
+
+views
+dir
+

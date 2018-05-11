@@ -1,0 +1,90 @@
+
+  <% unless f.error_messages.blank? %>
+  <div class="input-error">
+    <%= CGI.unescapeHTML(  f.error_messages :header_message => "Что-то не так!",
+                         :message => "При заполнении формы возникли такие ошибки: ",
+                         :header_tag => :h3 ) %>
+  </div>
+  <br />
+  <% end %>
+  <div class="field">
+    <%= f.hidden_field :id %>
+    <%= f.label :name, "Название корпуса" %>
+    <%= f.text_field :name, :class => 'long' %>
+  </div>
+  <div class="field">
+    <%= label_tag :manufacturer, "Производитель" %>
+    <%= text_field_tag :manufacturer, @hull.manufacturers.collect { |mfg| mfg[:name]}.join(', '), :class => 'long' %>
+    <div id="">
+  </div>
+
+  <div class="field">
+    <%= f.label :length, "Длина" %>
+    <%= f.text_field :length, :class => 'short' %> м.
+  </div>
+
+  <div class="field">
+    <%= f.label :width, "Ширина" %>
+    <%= f.text_field :width, :class => 'short' %> м.
+  </div>
+
+  <div class="field">
+    <%= f.label :height, "Высота" %>
+    <%= f.text_field :height, :class => 'short' %> м.
+  </div>
+
+  <div class="field">
+    <%= f.label :weight, "Масса корпуса" %>
+    <%= f.text_field :weight, :class => 'short' %> кг.
+  </div>
+
+  <div class="field">
+    <%= label_tag :material, "Материал" %>
+    <%= f.collection_select :material, @search_params[:material], :id, :title %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :deck_type, "Тип палубы" %>
+    <%= f.collection_select :deck_type, @search_params[:deck_type], :id, :title %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :transom_height, "Высота транца" %>
+    <%= f.collection_select :transom_height, @search_params[:transom_height], :id, :title %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :mover_type, "Движитель" %>
+    <%= f.collection_select :mover_type, @search_params[:mover_type], :id, :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :power,  "Мощность двигателя" %>
+    от <%= f.text_field :power_min, :class => 'short' %> до <%= f.text_field :power_max, :class => 'short' %> л.с.
+  </div>
+
+  <div class="field">
+    <%= f.label :deadrise, "Килеватость на транце" %>
+    <%= f.text_field :deadrise, :class => 'short' %> градусов
+  </div>
+
+  <div class="field">
+    <%= f.label :configuration, "Описание обводов" %>
+    <%= f.text_area :configuration %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, "Описание корпуса" %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :url,  "Ссылка на страницу с описанием" %>
+    <%= f.text_field :url, :class => 'long' %>
+  </div>
+  <div class="field">
+    <%= f.label :price,  "Цена в базовой комплектации" %>
+    <%= f.text_field :price, :class => 'short' %> рублей
+  </div>
+
+  

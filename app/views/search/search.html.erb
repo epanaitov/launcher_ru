@@ -1,0 +1,99 @@
+<h1>Подбор катеров и лодок по параметрам: <%=h @keywords%></h1>
+
+<div class="section">
+
+  <div class="title"><div style="float: right"><%= link_to 'Развернуть', nil, {:style => 'color: white', :id => 'search-form-toggler', :href => '#', :onclick => [visual_effect(:toggle_slide, 'search-form'), 'if ($("search-form-toggler").innerHTML == "Свернуть") $("search-form-toggler").innerHTML = "Развернуть"; else $("search-form-toggler").innerHTML = "Свернуть";']} %> </div>Форма поиска </div>
+  <div id="search-form" style="display: none;"><%= render :partial => 'search/form' %></div>
+</div>
+
+<%= googleadlist %>
+
+<table class="search-results">
+  <tr class="head">
+    <th class="name">Название</th>
+    <th class="length">Длина</th>
+    <th class="width">Ширина</th>
+    <th class="height">Высота</th>
+    <th class="weight">Вес</th>
+    <th class="deadrise">Килеватость</th>
+    <th class="mover-type">Тип двигателя</th>
+    <th class="power">Мощность</th>
+    <th class="transom-height">Высота транца</th>
+    <th class="material">Материал</th>
+    <th class="deck-type">Тип палубы</th>
+    <th class="manufacturer">Производитель</th>
+  </tr>
+  <% @hulls.each_index do |h| %>
+  <% 
+    hull = @hulls[h]
+
+    prop_types = []
+    prop_types = hull['prop_types'].split('|') unless hull['prop_types'].blank?
+
+    prop_titles = []
+    prop_titles = hull['prop_titles'].split('|') unless hull['prop_titles'].blank?
+
+    props = {}
+    prop_types.each_index do |pt|
+      type = prop_types[pt]
+      props[type] = [] if props[type].blank?
+      props[type] << prop_titles[pt]
+    end
+  %>
+  <tr <% if h%2 == 1 %> class="even" <% end %>>
+    <td><a href="/hulls/<%=h hull[:hull_slug] %>"><%=h hull[:hull_name] %></a></td>
+    <td><%=h hull[:length] %> м.</td>
+    <td><%=h hull[:width] %> м.</td>
+    <td><%=h hull[:height] %> м.</td>
+    <td><%=h hull[:weight] %> кг.</td>
+    <td><%=h hull[:deadrise] %>°</td>
+    <td><%=h pick_props('MoverType', props) %></td>
+    <td><%=h hull[:power_min] %> - <%=h hull[:power_max] %></td>
+    <td><%=h pick_props('TransomHeight', props) %></td>
+    <td><%=h pick_props('Material', props) %></td>
+    <td><%=h pick_props('DeckType', props) %></td>
+    <td><%=h hull['mfg_names'] %></td>
+  </tr>
+  <% if h > 0 and (h+1)%((@hulls.length/3.0).ceil) == 0 %>
+</table>
+<%= googleadlist %>
+<table class="search-results">
+  <tr class="head">
+    <th class="name">Название</th>
+    <th class="length">Длина</th>
+    <th class="width">Ширина</th>
+    <th class="height">Высота</th>
+    <th class="weight">Вес</th>
+    <th class="deadrise">Килеватость</th>
+    <th class="mover-type">Тип двигателя</th>
+    <th class="power">Мощность</th>
+    <th class="transom-height">Высота транца</th>
+    <th class="material">Материал</th>
+    <th class="deck-type">Тип палубы</th>
+    <th class="manufacturer">Производитель</th>
+  </tr>
+  <% end %>
+  <% end %>
+  <tr class="head">
+    <th class="name">Название</th>
+    <th class="length">Длина</th>
+    <th class="width">Ширина</th>
+    <th class="height">Высота</th>
+    <th class="weight">Вес</th>
+    <th class="deadrise">Килеватость</th>
+    <th class="mover-type">Тип двигателя</th>
+    <th class="power">Мощность</th>
+    <th class="transom-height">Высота транца</th>
+    <th class="material">Материал</th>
+    <th class="deck-type">Тип палубы</th>
+    <th class="manufacturer">Производитель</th>
+  </tr>
+</table>
+<br />
+<div class="message">
+  <h3>Почему здесь нет моего корпуса?</h3>
+  <p>Скорее всего Ваш корпус еще не добавлен в базу. Мы даем возможность любому желающему
+    внести посильный вклад <br />в развитие сервиса путем добавления любой информации о лодках, катерах
+    и их производителях.</p>
+  <p> Вы можете <a href="/hulls/new">добавить корпус</a> даже если Вы не знаете о нем ничего, кроме названия.</p>
+</div>

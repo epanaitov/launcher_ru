@@ -1,0 +1,28 @@
+<h1>Подбор и сравнение катеров и лодок по параметрам</h1>
+
+<div id="main">
+
+  <div class="message">
+    <p>Предлагаем Вам сервис подбора и сравнения лодок и катеров по параметрам. Возможны любые комбинации.</p>
+    <p>Заполните форму ниже. Все поля не обязательны, пустая форма вернет список всех корпусов в базе.</p>
+  </div>
+  <br />
+  <%= render :partial => 'search/form' %>
+  <br />
+</div>
+
+<div id="right-column">
+  <div class="panel">
+    <h2>Последние добавления</h2>
+    <ul>
+      <% @last.each do |hull| %>
+      <li><a href="/hulls/<%= hull[:slug] %>"><%= hull[:name] %></a></li>
+      <% end %>
+    </ul>
+
+    <%= googleadright %>
+
+  </div>
+</div>
+
+<div class="clear"></div>

@@ -1,0 +1,2 @@
+class MoverType < Property
+end

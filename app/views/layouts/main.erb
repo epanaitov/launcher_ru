@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type"  content="text/html; charset=UTF-8" />
+  <% unless @title.nil? %>
+  <title><%= @title %> - катера и лодки - launcha.ru</title>
+	<% else %>
+  <title>Подбор катеров и лодок по параметрам - launcha.ru</title>
+	<% end %>
+  <% unless @keywords.nil? %>
+  <meta name="keywords" content="<%=h @keywords %>, катера и лодки" />
+  <% else %>
+  <meta name="keywords" content="Подбор катеров и лодок по параметрам, катера и лодки" />
+  <% end %>
+  <% unless @description.nil? %>
+  <meta name="description" value="<%= @description %>" />
+  <% else %>
+  <meta name="description" value="Нужно сравнить несколько катеров и лодок? Или подобрать желаемый корпус по параметрам? launcha.ru поможет!" />
+  <% end %>
+
+  <meta name="copyright" content="Copyright ©<%=h Time.now.year %>" />
+  <meta name="robots" content="index,follow" />
+  <META name="robots" content="NOODP" />
+  <link rel="canonical" href="http://launcha.ru<%=h request.request_uri() %>" />
+
+  
+  <%= javascript_include_tag :all %>
+  
+  <%= stylesheet_link_tag 'main' %>
+
+  <!--[if IE 6]>
+    <link rel="stylesheet" href="/stylesheet/css/other/iefix.css?1728" type="text/css" media="screen" />
+  <![endif]-->
+
+</head>
+<body>
+<%
+=begin
+%>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-6985323-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+    })();
+
+  </script>
+<%
+=end
+%>
+  <div id="content">
+    <div id="content-inner">
+      <a id="logo" href="/"><img src="/images/launcha2.png" alt="launcha.ru - энциклопедия лодоки катеров" /></a>
+      <div id="site-status">
+        <p>Сайт находится на стадии разработки, постоянно добавляются новые функции и исправляются ошибки. Заходите чаще!<br />
+        Мы рады любым идеям по развитию сервиса, <a href="/contact">свяжитесь с нами</a> если Вам есть что предложить.</p>
+      </div>
+      <div class="clear"></div>
+
+    <% flash.each do |key, msg| %>
+      <%= content_tag :div, msg, :id => "flash", :class => key %>
+    <% end %>
+
+
+    <%= yield %>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div id="footer"><div id="footer-inner">
+    <div id="footer-add-block"><a href="/hulls/new/">Добавить корпус</a>&nbsp;&nbsp;<a href="/manufacturers/new/">Добавить производителя</a></div>
+    <div class="title"><a href="/">Подбор Катеров и лодок по параметрам</a>:</div>
+    <div class="column" id="footer-material">
+      <div>По материалам</div>
+      <ul>
+        <li><a href="/search/material/fiberglass/">Пластиковые лодки и катера</a></li>
+        <li><a href="/search/material/duralumin/">Лодки и катера из дюраля</a></li>
+        <li><a href="/search/material/5086/">Лодки и катера из АМГ</a></li>
+        <li><a href="/search/material/combined/">Лодки и катера из комбинированного материала (пластиковая палуба, металлическое днище)</a></li>
+        <li><a href="/search/material/inflatible/">Надувные лодки ПВХ</a></li>
+        <li><a href="/search/material/rib/">РИБы</a></li>
+      </ul>
+    </div>
+
+    <div class="column" id="footer-decktype">
+      <div>По типу палубы</div>
+      <ul>
+        <li><a href="/search/deck_type/runabout/">Лодки и катера автомобильной компановки</a></li>
+        <li><a href="/search/deck_type/cabin/">Каютные лодки и катера</a></li>
+        <li><a href="/search/deck_type/hardtop/">Лодки и катера Хардтоп</a></li>
+        <li><a href="/search/deck_type/bowrider/">Открытые лодки и катера</a></li>
+        <li><a href="/search/deck_type/cabin-walkaround/">Каютные лодки и катера walkaround</a></li>
+        <li><a href="/search/deck_type/hardtop-walkaround/">Лодки и катера Хардтоп walkaround</a></li>
+      </ul>
+    </div>
+    
+    <div class="column" id="footer-manufacturer">
+      <div>По производителю</div>
+      <% @search_params[:manufacturer][0..6].each do |mfg| %>
+      <ul>
+        <li><a href="/manufacturers/<%=h mfg[:slug] %>/"><%=h mfg[:name] %> (<%= mfg[:hc] %>)</a></li>
+      </ul>
+      <% end %>
+    </div>
+
+    <div class="column" id="footer-transom">
+      <div>По высоте транца</div>
+      <ul>
+      <% @search_params[:transom_height].each do |th| %>
+        <li><a href="/search/transom_height/<%=h th[:slug] %>/">Лодки и катера с транцем <%=h th[:title] %></a></li>
+      <% end %>
+      </ul>
+    </div>
+
+    <div class="column" id="footer-movertype">
+      <div>По типу двигателя</div>
+      <ul>
+        <li><a href="/search/mover_type/outboard/">Лодки и катера для подвесных двигателей</a></li>
+        <li><a href="/search/mover_type/inboard/">Лодки и катера с валом или ПОК</a></li>
+        <li><a href="/search/mover_type/jet/">Водометные лодки и катера</a></li>
+      </ul>
+    </div>
+    
+    <div class="column" id="footer-power">
+      <div>По мощности</div>
+      <ul>
+        <li><a href="/search/power/-15/">Лодки и катера до 15 сил</a></li>
+        <li><a href="/search/power/15-30/">Лодки и катера от 15 до 30 сил</a></li>
+        <li><a href="/search/power/30-40/">Лодки и катера от 30 до 40 сил</a></li>
+        <li><a href="/search/power/40-50/">Лодки и катера от 40 до 50 сил</a></li>
+        <li><a href="/search/power/50-60/">Лодки и катера от 50 до 60 сил</a></li>
+        <li><a href="/search/power/60-90/">Лодки и катера от 60 до 90 сил</a></li>
+        <li><a href="/search/power/90-/">Лодки и катера выше 90 сил</a></li>
+      </ul>
+    </div>
+    
+    <div class="column" id="footer-length">
+      <div>По размерам</div>
+      <ul>
+        <li><a href="/search/length/-3.0/">Лодки и катера до 3х метров</a></li>
+        <li><a href="/search/length/3.0-4.5/">Лодки и катера от 3х до 4.5 метров</a></li>
+        <li><a href="/search/length/4.5-5.0/">Лодки и катера от 4.5 до 5 метров</a></li>
+        <li><a href="/search/length/5.0-5.5/">Лодки и катера от 5 до 5.5 метров</a></li>
+        <li><a href="/search/length/5.5-6.5/">Лодки и катера от 5.5 до 6.5 метров</a></li>
+        <li><a href="/search/length/6.5-/">Лодки и катера от 6.5 метров</a></li>
+      </ul>
+    </div>
+
+    <div class="clear"></div>
+    <div id="contacts">
+    <a href="/contact">Связаться с авторами</a>
+    <div id="copyright">
+      &copy; 2009 - <%=h Time.now.year %> <a href="http://panaitov.net">Panaitov Corp.</a>
+    </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+    
+
+  </div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-6985323-3");
+pageTracker._setDomainName(".launcha.ru");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</body>
+</html>

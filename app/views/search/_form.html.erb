@@ -1,0 +1,152 @@
+<% form_for @search, :url => {:controller => 'index', :action => 'forward'}, :method => :post do |f| %>
+
+  <div class="section">
+    <div class="title">Размеры и масса</div>
+    <div class="inner">
+    <div>
+    <%= label_tag :length, "Длина" %>
+
+    <%= label_tag 'length[min]', "От", :class=> 'inline'  %>
+    <%= text_field_tag 'length[min]', nil, :class=> 'short' %>
+
+    <%= label_tag 'length[max]', "до", :class=> 'inline'  %>
+    <%= text_field_tag 'length[max]', nil, :class=> 'short' %> м.
+<%
+=begin
+%>
+    <%= f.label :length, "Длина" %>
+
+    <%= f.label :length_min, "От", :class=> 'inline' %>
+    <%= f.text_field :length_min, :class=> 'short' %>
+
+    <%= f.label :length_max, "до", :class=> 'inline'  %>
+    <%= f.text_field :length_max, :class=> 'short' %> м.
+<%
+=end
+%>
+    </div>
+
+    <div>
+    <%= label_tag :width, "Ширина" %>
+
+    <%= label_tag 'width[min]', "От", :class=> 'inline'  %>
+    <%= text_field_tag 'width[min]', nil, :class=> 'short' %>
+
+    <%= label_tag 'width[max]', "до", :class=> 'inline'  %>
+    <%= text_field_tag 'width[max]', nil, :class=> 'short' %> м.
+    </div>
+
+    <div>
+    <%= label_tag :height, "Высота" %>
+
+    <%= label_tag 'height[min]', "От", :class=> 'inline'  %>
+    <%= text_field_tag 'height[min]', nil, :class=> 'short' %>
+
+    <%= label_tag 'height[max]', "до", :class=> 'inline'  %>
+    <%= text_field_tag 'height[max]', nil, :class=> 'short' %> м.
+    </div>
+
+    <div>
+    <%= label_tag :weight, "Масса корпуса" %>
+
+    <%= label_tag 'weight[min]', "От", :class=> 'inline'  %>
+    <%= text_field_tag 'weight[min]', nil, :class=> 'short' %>
+
+    <%= label_tag 'weight[max]', "до", :class=> 'inline'  %>
+    <%= text_field_tag 'weight[max]', nil, :class=> 'short' %> кг.
+    </div>
+    </div>
+  </div>
+  <br />
+  <div class="section">
+    <div class="title">Материал</div>
+    <div class="inner">
+    <% @search_params[:material].each do |row| %>
+      <%= check_box_tag 'material['+row[:id].to_s+']', row[:slug] %>
+      <%= label_tag 'material['+row[:id].to_s+']', row[:title], :class=> 'inline' %>
+    <% end %>
+    </div>
+  </div>
+  <br />
+  <div class="section">
+    <div class="title">Тип палубы</div>
+    <div class="inner">
+    <% @search_params[:deck_type].each do |row| %>
+      <%= check_box_tag 'deck_type['+row[:id].to_s+']', row[:slug] %>
+      <%= label_tag 'deck_type['+row[:id].to_s+']', row[:title], :class=> 'inline' %>
+    <% end %>
+    </div>
+  </div>
+  <br />
+  <div class="section">
+    <div class="title">Высота транца</div>
+    <div class="inner">
+    <% @search_params[:transom_height].each do |row| %>
+      <%= radio_button_tag :transom_height, row[:slug] %>
+      <%= label_tag 'transom_height_'+row[:slug].downcase, row[:title], :class=> 'inline' %>
+    <% end %>
+    </div>
+  </div>
+  <br />
+  <div class="section">
+    <div class="title">Тип движителя и мощность</div>
+    <div class="inner">
+    <div>
+    <% @search_params[:mover_type].each do |row| %>
+      <%= radio_button_tag :mover_type, row[:slug] %>
+      <%= label_tag 'mover_type_'+row[:slug].downcase, row[:title], :class=> 'inline' %>
+    <% end %>
+    </div>
+
+    <div>
+      <%= label_tag :power, "Мощность" %>
+
+      <%= label_tag 'power[min]', "От", :class=> 'inline'  %>
+      <%= text_field_tag 'power[min]', nil, :class=> 'short' %>
+
+      <%= label_tag 'power[max]', "до", :class=> 'inline'  %>
+      <%= text_field_tag 'power[max]', nil, :class=> 'short' %> л.с.
+    </div>
+    </div>
+  </div>
+  <br />
+  <div class="section">
+    <div class="title">Производитель</div>
+    <div class="inner">
+    <% @search_params[:manufacturer].each do |row| %>
+      <%= check_box_tag 'manufacturer['+row[:id].to_s+']', row[:slug] %>
+      <%= label_tag 'manufacturer['+row[:id].to_s+']', row[:name], :class=> 'inline' %>
+    <% end %>
+    </div>
+  </div>
+  <br />
+  <div class="section">
+    <div class="title">Конфигурация днища</div>
+    <div class="inner">
+    <div>
+    <%= label_tag :deadrise, "Килеватость" %>
+
+    <%= label_tag 'deadrise[min]', "От", :class=> 'inline'  %>
+    <%= text_field_tag 'deadrise[min]', nil, :class=> 'short' %>
+
+    <%= label_tag 'deadrise[max]', "до", :class=> 'inline'  %>
+    <%= text_field_tag 'deadrise[max]', nil, :class=> 'short' %> °
+    </div>
+<%
+=begin
+%>
+    <div>
+      <%= label_tag :configuration, "Описание обводов"  %>
+      <%= text_field_tag :configuration %>
+    </div>
+<%
+=end
+%>
+    </div>
+  </div>
+  <br />
+  <div>
+    <label>&nbsp;</label>
+    <input type="submit" value="Искать" />
+  </div>
+<% end %>

@@ -1,0 +1,22 @@
+<h1>Связаться с авторами</h1>
+<div class="message">
+  <p>Для связи с авторами используйте форму ниже. Ваше сообщение будет мгновенно
+  доставлено непосредственно <br /> авторам и разработчикам проекта. Мы постараемся связаться с Вами в кратчайшие сроки.</p>
+
+  <p>Ваши персональные данные (в частности Ваш email) ни при каких условиях<br /> не будут переданы третьим лицам. Мы чтим безопасность и репутацию сервиса.</p>
+</div>
+<br />
+<% form_tag :action => 'submit' do %>
+  <div class="field">
+  <%= label_tag :email, 'Ваш email для обратной связи'%>
+  <%= text_field_tag :email, nil, :class => 'long' %>
+  </div>
+  <div class="field">
+  <%= label_tag :message, 'Ваше сообщение'%>
+  <%= text_area_tag :message, nil, :class => 'huge' %>
+  </div>
+  <div class="field">
+    <label>&nbsp;</label>
+    <%= submit_tag 'Отправить' %>
+  </div>
+<% end %>

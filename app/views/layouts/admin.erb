@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type"  content="text/html; charset=UTF-8" />
+  <% unless @title.nil? %>
+  	<title><%= @title %></title>
+	<% else %>
+		<title>Подбор катеров и лодок по параметрам - launcha.ru</title>
+	<% end %>
+
+  <% unless @keywords.nil? %>
+    <meta name="keywords" content="<%=h @keywrods %>" />
+  <% else %>
+    <meta name="keywords" content="Подбор катеров и лодок по параметрам, катера и лодки" />
+  <% end %>
+
+  <% unless @description.nil? %>
+    <meta name="description" value="<%= @description %>" />
+  <% else %>
+    <meta name="description" value="Нужно сравнить несколько катеров и лодок? Или подобрать желаемый корпус по параметрам? launcha.ru поможет!" />
+  <% end %>
+
+
+  <% unless @title.nil? %>
+  	<title><%= @title %></title>
+	<% else %>
+		<title>Подбор катеров и лодок по параметрам - launcha.ru</title>
+	<% end %>
+
+  <meta name="copyright" content="Copyright ©<%=h Time.now.year %>" />
+  <meta name="robots" content="index,follow" />
+  <META name="robots" content="NOODP" />
+  <link rel="canonical" href="http://launcha.ru<%=h request.request_uri() %>" />
+
+  
+  <%= javascript_include_tag :all %>
+  
+  <%= stylesheet_link_tag 'main' %>
+
+</head>
+<body class="admin">
+
+  <div id="content">
+    <div id="content-inner">
+
+    <% flash.each do |key, msg| %>
+      <%= content_tag :div, msg, :id => "flash", :class => key %>
+    <% end %>
+
+
+    <%= yield %>
+    
+    </div>
+  </div>
+
+  
+
+</body>
+</html>

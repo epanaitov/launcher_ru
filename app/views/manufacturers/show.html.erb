@@ -1,0 +1,53 @@
+<h1><%=h @mfg[:name]%></h1>
+<div id="main">
+
+  <%= googleadlist %>
+  
+  Сайт: <a href="<%= @mfg[:url] %>"><%= @mfg[:url] %></a>
+  <p><%=h @mfg[:description] %></p>
+
+
+  <h2>Продукция:</h2>
+
+  <table class="search-results">
+  <tr class="head">
+    <th class="name">Название</th>
+    <th class="length">Длина</th>
+    <th class="width">Ширина</th>
+    <th class="height">Высота</th>
+    <th class="weight">Вес</th>
+    <th class="deadrise">Килеватость</th>
+    <th class="mover-type">Тип двигателя</th>
+    <th class="power">Мощность</th>
+    <th class="transom-height">Высота транца</th>
+    <th class="material">Материал</th>
+    <th class="deck-type">Тип палубы</th>
+  </tr>
+  <% @mfg.hulls.each_index do |h| %>
+  <%
+  hull = @mfg.hulls[h]
+  props = hull.properties
+  %>
+  <tr <% if h%2 == 1 %> class="even" <% end %>>
+    <td><a href="/hulls/<%=h hull[:slug] %>"><%=h hull[:name] %></a></td>
+    <td><%=h hull[:length] %> м.</td>
+    <td><%=h hull[:width] %> м.</td>
+    <td><%=h hull[:height] %> м.</td>
+    <td><%=h hull[:weight] %> кг.</td>
+    <td><%=h hull[:deadrise] %>°</td>
+    <td><%=h pick_props('MoverType', props) %></td>
+    <td><%=h hull[:power_min] %> - <%=h hull[:power_max] %></td>
+    <td><%=h pick_props('TransomHeight', props) %></td>
+    <td><%=h pick_props('Material', props) %></td>
+    <td><%=h pick_props('DeckType', props) %></td>
+  </tr>
+  <% end %>
+  </table>
+</div>
+
+<div id="right-column">
+  <div class="panel">
+    <h2>Дополнительно</h2>
+    <%= googleadright %>
+  </div>
+</div>

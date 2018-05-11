@@ -1,0 +1,330 @@
+* {
+  margin: 0;
+}
+
+html, body {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  position: relative;
+}
+
+h1 {
+  padding: 20px 0px;
+  font-size: 150%;
+}
+
+h2 {
+  padding: 15px 0px;
+}
+
+h3 {
+  padding: 10px 0px;
+}
+
+ul {
+  padding: 0 0 0 20px;
+}
+
+li {
+  padding: 0px 0px 10px 0px;
+}
+
+#content {
+  padding-bottom: 360px;
+  padding-top: 0px;
+}
+
+.admin #content {
+  padding-top: 20px;
+}
+
+#content-inner {
+  width: 1000px;
+  margin: 0px auto;
+}
+
+#footer {
+  height: 350px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+#footer-inner {
+  width: 1000px;
+  margin: 0px auto;
+  padding: 10px 0px 0px;
+}
+
+#footer .title {
+  padding: 0px 1px 10px;
+}
+
+#footer ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#footer ul li {
+  margin: 0;
+  padding: 5px 0px 5px 5px;
+  line-height: 100%;
+}
+
+.column {
+  float: left;
+  padding: 0px 2px;
+}
+
+.column div {
+  background-color: #6F4232;
+  color: #ECB9A7;
+  font-weight: bold;
+  padding: 2px 5px;
+}
+
+.clear {
+  clear: both;
+}
+
+body {
+  background-image: url(../images/launcha3.png);
+  background-repeat: repeat-x;
+  background-position: left top;
+  background-color: #efd7b5;
+  color: #2F0900;
+  font-size: 13px;
+  font-family: Tahoma;
+}
+
+body.admin {
+  background-image: none;
+  background-color: #FDE7C8;
+}
+
+a, a:link, a:visited {
+  color: #581000;
+}
+
+a:hover, a:active {
+  background-color: #6F4232;
+  color: #ECB9A7;
+}
+
+#footer {
+  border-top: 1px solid #491300;
+  background-color: #FDE7C8;
+}
+
+#footer-material {
+  width: 177px;
+}
+
+#footer-length {
+  width: 100px;
+}
+
+#footer-movertype {
+  width: 140px;
+}
+
+#footer-decktype {
+  width: 170px;
+}
+
+#footer-manufacturer {
+  width: 150px;
+}
+
+#footer-transom {
+  width: 135px;
+}
+
+#footer-power {
+  width: 100px;
+}
+
+#copyright {
+  float: right;
+  padding: 0px 5px;
+  color: #ACACAC;
+  text-align: right;
+}
+
+#contacts {
+  padding: 5px;
+}
+
+#copyright a {
+  color: #ACACAC;
+}
+
+#footer-add-block {
+  float: right;
+}
+
+#flash, .input-error {
+  width: 100%;
+  padding: 10px 0px;
+  margin: 0px auto;
+  text-align: center;
+}
+
+#flash.notice {
+  background-color: #A8FFA8;
+  border: 1px solid green;
+}
+
+#flash.error, .input-error {
+  background-color: #FFAEAE;
+  border: 1px solid red;
+}
+
+.search-results {
+  border-collapse: collapse;
+  border: 1px solid gray;
+  width: 100%;
+}
+
+.search-results th,
+.search-results td {
+  border: 1px solid gray;
+  padding: 3px 5px;
+}
+
+.search-results .head {
+  background-color: #6F4232;
+  color: #ECB9A7;
+  font-weight: bold;
+}
+
+.search-results tr.even {
+  background-color: #FFE8D2;
+}
+
+.search-results td {
+  text-align: left;
+}
+
+p {
+  padding: 5px 0px;
+}
+
+.message {
+  background-color: #FFFADB;
+  border: 1px solid #DDCE66;
+  text-align: center;
+  padding: 0px 20px;
+}
+
+form label {
+  float: left;
+  width: 250px;
+}
+
+form input.short {
+  width: 50px;
+}
+
+form input.long {
+  width: 350px;
+}
+
+form textarea {
+  width: 350px;
+  height: 100px;
+}
+
+form div.field {
+  padding: 5px 0;
+}
+
+form label.inline {
+  float: none;
+  display: inline;
+  width: auto;
+}
+
+div.section {
+  border: 1px solid #6F4232;
+}
+
+.section .title {
+  background-color: #6F4232;
+  color: #FFFEEE;
+  padding: 0px 2px 1px 2px;
+}
+
+.section .inner {
+  padding: 5px;
+}
+
+#main {
+  width: 830px;
+  float: left;
+  padding-right: 10px;
+}
+
+#right-column {
+  float: right;
+  width: 160px;
+}
+
+#right-column .panel {
+  width: 100%;
+  border: 1px solid #6F4232;
+}
+
+#right-column .panel h2 {
+  background-color: #6F4232;
+  color: #FFFEEE;
+  font-size: 12px;
+  padding: 5px;
+}
+
+.googleadlist {
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+}
+
+a#logo {
+  float: left;
+  height: 90px;
+}
+
+a#logo:active,
+a#logo:hover {
+  background-color: transparent;
+  border: 0;
+}
+
+a img {
+  border: 0;
+}
+
+div#site-status {
+  padding: 0px 5px;
+  float: right;
+  color: #6F4232;
+  background-color: #FFFADB;
+  border: 1px solid #DDCE66;
+  margin-top: 10px;
+  text-align: right;
+}
+
+textarea.huge {
+  width: 100%;
+  height: 150px;
+}
+
+#search-form {
+  padding: 5px;
+}

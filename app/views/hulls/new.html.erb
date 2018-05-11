@@ -1,0 +1,16 @@
+<h1>Добавить корпус</h1>
+
+<div class="message">
+  <p>Единственным необходимым полем является название корпуса. Наша система <br />предупредит
+    Вас в случае если корпус с таким названием уже есть в нашей базе.</p>  
+</div>
+<br />
+<% form_for @hull do |f| %>
+<%= render :partial => 'hulls/hull_edit', :locals => {:f => f} %>
+<div class="field">
+    <label>&nbsp;</label>
+    <%= f.submit "Добавить" %>
+  </div>
+<% end %>
+
+<br />
